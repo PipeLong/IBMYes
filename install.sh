@@ -11,8 +11,8 @@ create_mainfest_file(){
 	IBM_MEM_SIZE=256
     fi
     echo "内存大小：${IBM_MEM_SIZE}"
-    
-    
+
+
     cat >  ${SH_PATH}/IBMYes/v2ray-cloudfoundry/manifest.yml  << EOF
     applications:
     - path: .
@@ -21,15 +21,16 @@ create_mainfest_file(){
       memory: ${IBM_MEM_SIZE}M
 EOF
 
-     echo "配置完成。"
+    echo "配置完成。"
 }
 
 clone_repo(){
     echo "进行初始化。。。"
-    git clone https://github.com/CCChieh/IBMYes
+    git clone https://github.com/fakedon/IBMYes
     cd IBMYes
     git submodule update --init --recursive
     cd v2ray-cloudfoundry/v2ray
+    sed -i -r "s/\"id\": ".+",/\"id\": \"$(cat /proc/sys/kernel/random/uuid)\",/g" config.json
     chmod +x *
     cd ${SH_PATH}/IBMYes/v2ray-cloudfoundry
     echo "初始化完成。"
