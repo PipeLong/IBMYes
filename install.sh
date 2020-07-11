@@ -30,7 +30,6 @@ clone_repo(){
     cd IBMYes
     git submodule update --init --recursive
     cd v2ray-cloudfoundry/v2ray
-    sed -i -r "s/\"id\": ".+",/\"id\": \"$(cat /proc/sys/kernel/random/uuid)\",/g" config.json
     chmod +x *
     cd ${SH_PATH}/IBMYes/v2ray-cloudfoundry
     echo "初始化完成。"
@@ -39,6 +38,9 @@ clone_repo(){
 install(){
     echo "进行安装。。。"
     cd ${SH_PATH}/IBMYes/v2ray-cloudfoundry
+    id=$(cat /proc/sys/kernel/random/uuid)
+    sed -i -r "s/\"id\": ".+",/\"id\": \"${id}\",/g" ${SH_PATH}/IBMYes/v2ray-cloudfoundry/v2ray/config.json
+    echo "id: ${id}, 记住这个id，导入配置后需要修改id为此字符串！！！"
     ibmcloud target --cf
     ibmcloud cf install
     ibmcloud cf push

@@ -1,5 +1,8 @@
 # IBMYes
 
+说明：本项目基于[IBMYes](https://github.com/CCChieh/IBMYes)修改，使每次安装都使用新生成的UUID，保证了v2ray链接的隐秘性，避免被人滥用。  
+原项目安装v2ray都是使用默认用户ID，如要修改ID需要自行修改[config.js](https://github.com/fakedon/v2ray-cloudfoundry/blob/ca276ca72f741725046414b2a05ff2f000814067/v2ray/config.json)，即使如此也暴露了用户ID。
+
 本项目包括3部分
 
 1. IBM Cloud Fonudray搭建V2Ray ws
@@ -49,6 +52,7 @@ wget --no-check-certificate -O install.sh https://raw.githubusercontent.com/CCCh
 在配置的时候需要输入应用名称（这里就是我创建应用的时候输入应用名称我输入的是ibmyes，你需要改成你自己的名称）和应用内存大小（我们刚刚选择的是256）
 
 ![image-20200615211154143](img/README/image-20200615211154143.png)
+这里记住这个ID，后面导入配置后需要修改为这个ID。
 
 配置好，等待几分钟，便可自动完成安装。
 
@@ -71,6 +75,7 @@ vmess://ew0KICAidiI6ICIyIiwNCiAgInBzIjogImlibXllcyIsDQogICJhZGQiOiAiaWJteWVzLnVz
 ```
 
 把上面的配置复制到你的v2rayN或v2rayNg中，修改地址为你的应用的域名（前面我们`Bad Request`那个网页的域名。
+修改用户ID为上面提到的ID。
 
 ![image-20200615212537944](img/README/image-20200615212537944.png)
 
